@@ -1,5 +1,16 @@
 'use strict';
 
 function countSameElements(collection) {
-  return '实现练习要求，并改写该行代码。';
+  const countedItems = collection.reduce((allItems, currentIem) => {
+    if (currentIem.match("-")) {
+      const [key, count] = currentIem.split("-");
+      allItems[key] = parseInt(count);
+    } else {
+      allItems[currentIem] ? allItems[currentIem]++ : allItems[currentIem] = 1;
+    }
+    return allItems;
+  }, {});
+  return Object.keys(countedItems).map(key => {
+    return {key, count: countedItems[key]}
+  })
 }
